@@ -11,7 +11,7 @@ The project is forever free and open-source, feel free to evolve our codebase!
 ```
 - npm install
 - npm run win OR npm run mac
-- open degenhub-ape-bot 3.2.0.exe file
+- open degenhub-ape-bot.exe file
 ```
 
 ## How to use?
