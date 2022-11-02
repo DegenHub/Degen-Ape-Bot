@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "sourceMap": true,
+    "moduleResolution": "node",
+    "noImplicitAny": false,
+    "removeComments": false,
+    "noLib": false,
+    "preserveConstEnums": true,
+    "importHelpers": false,
+    "experimentalDecorators": true,
+    "declaration": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "outDir": "./build",
+    "module": "commonjs",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true                         
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "src/__test__", "dist"]
+}
+

@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en" class="h-100">
+
+<head>
+  <meta charset="utf-8">
+
+  <title>Degen Hub APE Bot</title>
+
+
+  <link href="./css/bootstrap.min.css" rel="stylesheet">
+  <link href="./css/custom.css" rel="stylesheet">
+  <script type="text/javascript" src="./js/bootstrap.min.js"></script>
+
+  <meta name="theme-color" content="#7952b3">
+
+  <script type="text/javascript" src="./renderer.js"></script>
+  <script type="text/javascript" src="./setup.js"></script>
+  <script type="text/javascript" src="./portfolio.js"></script>
+
+
+</head>
+
+<body class="d-flex h-100 text-center text-white bg-dark">
+
+
+
+  <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header style="margin-bottom: 4rem;">
+
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+        <a class="navbar-brand">
+          <img src="./images/logoNorm.png" alt="DegenHub" height="36">
+        </a>
+
+        <div class="float-md-end mb-0">
+
+          <button id='settingsButton' type="button" class="btn btn-primary" data-bs-toggle="modal"
+            data-bs-target="#settingModal">Settings</button>
+
+        </div>
+
+      </nav>
+
+
+    </header>
+
+
+
+
+    <section>
+
+      <div class="container">
+        <div class="row">
+          <div style="margin-bottom: 2rem;" class="col">
+            <div class="text-pull-left mb-3">
+              <label for="apeAddress" class="form-label">Token Address</label>
+              <input placeholder="0x... Input a Token Address for trade" class="form-control" id="apeAddress">
+            </div>
+            <div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item text-warning bg-dark text-pull-left">Name: <span class="text-light"
+                    id='token:name'></span></li>
+                <li class="list-group-item text-warning bg-dark text-pull-left">Supply: <span class="text-light"
+                    id='token:supply'></span></li>
+                <li class="list-group-item text-warning bg-dark text-pull-left">Decimal: <span class="text-light"
+                    id='token:decimal'></span></li>
+                <li class="list-group-item text-warning bg-dark text-pull-left">Slippage: <span class="text-light"
+                    id='token:taxes'></span></li>
+                <li class="list-group-item text-warning bg-dark text-pull-left">Your balance: <span class="text-light"
+                    id='token:balance'></span></li>
+
+              </ul>
+            </div>
+            <div class="btn-group" role="group" aria-label="ape-options">
+              <button id='startButton' class="btn btn-success">🔥 Start a new APE</button>
+            </div>
+          </div>
+          <div style="margin-bottom: 2rem;" class="col">
+
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item text-warning bg-dark text-pull-left">Chain: <span class="text-light"
+                  id='chainName'></span></li>
+              <li class="list-group-item text-warning bg-dark text-pull-left">Wallet Address: <span class="text-light"
+                  id='walletAddress'></span></li>
+              <li class="list-group-item text-warning bg-dark text-pull-left">Wallet balance: <span class="text-light"
+                  id='walletBalance'></span></li>
+
+            </ul>
+
+
+
+            <div>
+              <span id='traderStatus'></span>
+            </div>
+            <div>
+              <span id='traderStatus2'></span>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+
+
+    </section>
+
+    <section>
+
+      <div class="container">
+        <h3 style="text-align: left; margin-bottom: 1rem;">Your Open Positions</h3>
+        <div id="portfolioCards" class="row">
+
+
+
+
+
+
+        </div>
+      </div>
+
+
+
+
+    </section>
+
+
+    <!-- Settings modal -->
+    <div class="modal fade" id="settingModal" tabindex="-1" aria-labelledby="settingModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content">
+          <div class="modal-header text-dark">
+            <h5 class="modal-title" id="settingModalLabel">Settings</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body text-dark">
+
+            <ul class="nav nav-tabs" id="settingTab" role="tablist">
+              <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general"
+                  type="button" role="tab" aria-controls="general" aria-selected="true">General</button>
+              </li>
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="telegram-tab" data-bs-toggle="tab" data-bs-target="#telegram" type="button"
+                  role="tab" aria-controls="telegram" aria-selected="false">Telegram</button>
+              </li>
+
+              <li class="nav-item" role="presentation">
+                <button class="nav-link" id="exportkey-tab" data-bs-toggle="tab" data-bs-target="#exportkey"
+                  type="button" role="tab" aria-controls="exportkey" aria-selected="false">Export Private Key</button>
+              </li>
+            </ul>
+
+            <div class="tab-content" id="settingTabContent">
+              <div style="padding-top: 2rem;" class="tab-pane fade show active" id="general" role="tabpanel"
+                aria-labelledby="general-tab">
+
+                <div class="mb-3">
+                  <label for="setting1" class="form-label">PrivateKey</label>
+                  <input type="password" class="form-control" id="setting1">
+                </div>
+                <div class="mb-3">
+                  <label for="setting2" class="form-label">Chain/Swap</label>
+                  <select id="setting2" class="form-select" aria-label="Default select example">
+                    <option value="ethereum">UniSwapV2 / ETH</option>
+                  </select>
+                </div>
+                <div class="mb-3">
+                  <label for="setting3" class="form-label">APE Amount (in ETH...)</label>
+                  <input type="number" value="0.1" step="0.0001" class="form-control" id="setting3">
+                </div>
+                <div class="mb-3">
+                  <label for="setting7" class="form-label">Max slippage % (adjusted with Tax)</label>
+                  <input type="number" value="10" step="0.1" class="form-control" id="setting7">
+                </div>
+
+                <div class="mb-3">
+                  <label for="setting4" class="form-label">Auto sell when profit %</label>
+                  <select id="setting4" class="form-select" aria-label="Default select example">
+                    <option value="10">10%</option>
+                    <option value="20">20%</option>
+                    <option value="30">30%</option>
+                    <option value="35">35%</option>
+                    <option value="40">40%</option>
+                    <option value="45">45%</option>
+                    <option selected value="50">50%</option>
+                    <option value="60">60%</option>
+                    <option value="70">70%</option>
+                    <option value="80">80%</option>
+                    <option value="100">100%</option>
+                    <option value="150">150%</option>
+                    <option value="200">200%</option>
+                    <option value="1000">1000% B!G D*CK</option>
+                  </select>
+                </div>
+                <hr>
+                <p>! Advanced settings, do not change unless you are pro !</p>
+                <div class="mb-3">
+                  <label for="setting5" class="form-label">Custom Gas Price (in GWEI)</label>
+                  <input type="number" min="1" max="10000" placeholder="default" class="form-control" id="setting5">
+                </div>
+                <div class="mb-3">
+                  <label for="setting6" class="form-label">Custom Gas Limit</label>
+                  <input type="number" min="100000" placeholder="default" class="form-control" id="setting6">
+                </div>
+
+                <div class="mb-3">
+                  <label for="customRPC" class="form-label">Custom RPC Endpoint</label>
+                  <input type="text" placeholder="default" class="form-control" id="customRPC">
+                </div>
+
+
+              </div>
+              <div style="padding-top: 2rem;" class="tab-pane fade" id="telegram" role="tabpanel"
+                aria-labelledby="telegram-tab">
+
+                <div class="mb-3">
+                  <label for="settingTelegramSession" class="form-label">TelegramSession</label>
+                  <input type="password" class="form-control" id="settingTelegramSession">
+                </div>
+                <div class="mb-3">
+                  <label for="settingTelegramChannel" class="form-label">TelegramChannelName</label>
+                  <input type="text" class="form-control" id="settingTelegramChannel">
+                </div>
+                <div class="mb-3">
+                  <label for="settingTelegramFilter" class="form-label">CustomFilterWord</label>
+                  <input type="text" placeholder="Optional word which signal should include e.g. ETH"
+                    class="form-control" id="settingTelegramFilter">
+                </div>
+                <div class="mb-3">
+                  <label for="settingTelegramAPI" class="form-label">TelegramAPI ID</label>
+                  <input type="text" class="form-control" id="settingTelegramAPI">
+                </div>
+                <div class="mb-3">
+                  <label for="settingTelegramAPIHASH" class="form-label">TelegramAPI HASH</label>
+                  <input type="text" class="form-control" id="settingTelegramAPIHASH">
+                </div>
+
+
+              </div>
+
+
+
+              <div style="padding-top: 2rem;" class="tab-pane fade" id="exportkey" role="tabpanel"
+                aria-labelledby="exportkey-tab">
+
+                <div class="mb-3">
+                  <input type="button" class="btn btn-danger" value='Show PrivateKey' id="loadKeyPrivateKey">
+                  <p></p>
+                  <input type="text" class="form-control" id="privateKeyReadable">
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+
+
+          </div>
+          <div class="modal-footer text-dark">
+            <button type="button" id='settingSaveAndClose' class="btn btn-primary" data-bs-dismiss="modal">Save &
+              Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Settings modal -->
+    <!-- Initial Setup modal -->
+    <div class="modal fade" id="setupModal" tabindex="-1" aria-labelledby="setupModalLabel" aria-hidden="true">
+      <div class="modal-dialog ">
+        <div class="modal-content">
+          <div class="modal-header text-dark">
+            <h5 class="modal-title" id="setupModalLabel">Setup</h5>
+          </div>
+
+          <div class="text-dark">
+            <br>
+            <h4>Welcome at Degen Hub 🐵 Ape bot!</h4>
+            <p>
+              <br>
+
+              Before you start aping you need to setup your trading Wallet, for that we re recommend to create a new
+              empty wallet.
+              <br>
+              <br>
+              Generate one or add your own!
+
+            </p>
+
+          </div>
+
+          <div class="modal-body text-dark">
+            <div class="mb-5">
+              <label for="setupWalletPrivateKey" class="form-label">Enter PrivateKey</label>
+              <input type="text" class="form-control" id="setupWalletPrivateKey">
+              <button style="margin-top: 1rem;" id="generatePrivateKey" type="button" class="btn btn-success">Click here
+                to Generate</button>
+            </div>
+
+            <div>
+              <p>! Do not share your PrivateKey with anyone !</p>
+            </div>
+
+
+          </div>
+          <div class="modal-footer text-dark">
+            <button type="button" id='setupSaveAndClose' class="btn btn-primary" data-bs-dismiss="modal">Save &
+              Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Initial Setup modal -->
+
+
+
+
+    <footer class="mt-auto text-white-50">
+
+    </footer>
+  </div>
+
+
+
+</body>
+
+
+</html>
