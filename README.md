@@ -19,3 +19,6 @@ The project is forever free and open-source, feel free to evolve our codebase!
 - Add an empty address PrivateKey (You can create & export privateKey from Metamask)
 - Send some fund into the fresh address
 - Start a new APE OR set up the intergrated plugins to manage your trades.
+
+## Join us on Telegram:
+- t.me/degenhubentry
