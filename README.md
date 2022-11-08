@@ -21,4 +21,4 @@ The project is forever free and open-source, feel free to evolve our codebase!
 - Start a new APE OR set up the intergrated plugins to manage your trades.
 
 ## Join us on Telegram:
-- t.me/degenhubentry
+- https://t.me/degenhubentry
