@@ -1,6 +1,8 @@
 Degen Hub APE bot for UniSwapV2.
 **This tool made for education purposes, use it for your own risk.**
 
+![Alt Text](https://postimg.cc/p9Dw8ChY)
+
 ## What is this?
 - The DeFi market is ruled by bots, and bots ruled by developers. Our goal is to provide a generic easy to use bot for everyone, without overpriced "PRO" version, mallware, tracking or GPU mining. 
 
