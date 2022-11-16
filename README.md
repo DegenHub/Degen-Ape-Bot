@@ -24,3 +24,6 @@ The project is forever free and open-source, feel free to evolve our codebase!
 
 ## Join us on Telegram:
 - https://t.me/degenhubentry
+
+## Join us on Twitter:
+- https://twitter.com/hubdegen
